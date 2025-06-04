@@ -11,7 +11,7 @@ public:
         users.push(User("Huyen", "huyen@gmail.com"));
     }
 
-    std::stack<User> getAllUsers() const
+    const std::stack<User>& getAllUsers() const
     {
         return users;
     }

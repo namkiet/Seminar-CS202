@@ -9,7 +9,7 @@ public:
         users.push_back(User("Kiet", "kiet@gmail.com"));
     }
 
-    std::vector<User> getAllUsers()
+    const std::vector<User>& getAllUsers() const
     {
         return users;
     }

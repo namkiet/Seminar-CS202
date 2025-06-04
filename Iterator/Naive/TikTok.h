@@ -11,7 +11,7 @@ public:
         users["linh"] = User("Linh", "linh@gmail.com");
     }
 
-    std::unordered_map<std::string, User> getAllUsers() const
+    const std::unordered_map<std::string, User>& getAllUsers() const
     {
         return users;
     }
