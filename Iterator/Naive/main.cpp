@@ -1,15 +1,10 @@
-#include "Client.h"
+#include "Store.h"
 
 int main()
 {
-    Client client;
-    
-    Facebook fb;
-    Instagram ig;
-    TikTok tiktok;
-    
-    client.sendFacebookMessage(fb); 
-    client.sendInstagramMessage(ig); 
-    client.sendTikTokMessage(tiktok);    
+    Store store;
+    store.displayAllBooks(); 
+    store.displayAllClothes(); 
+    store.displayAllElectronics();    
     return 0;
 }
