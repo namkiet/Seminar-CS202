@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 
-class Product {
+class Product 
+{
 public:
     Product() = default;
     Product(std::string name, double price)
