@@ -1,31 +1,22 @@
-#include "Clothes.h"
-#include "Electronics.h"
-#include "Food.h"
-#include <iostream>
-#include <vector>
-#include <memory>
-#include <string>
+#include "Form.h"
+#include "TextInput.h"
+#include "DatePicker.h"
 
-// -------------------- Main --------------------
+#include <iostream>
+
 int main() 
 {
-    std::vector<std::shared_ptr<Product>> cart = {
-        std::make_shared<Food>("Bread", 2.5),
-        std::make_shared<Electronics>("Laptop", 1000.0),
-        std::make_shared<Clothes>("Jacket", 120.0, false),
-        std::make_shared<Clothes>("Kids Jacket", 60.0, true)
-    };
+    auto textInput = std::make_shared<TextInput>();
+    auto datePicker = std::make_shared<DatePicker>();
 
-    std::string region = "Canada"; // Choose region
+    Form form;
+    form.addField(textInput);
+    form.addField(datePicker);
 
-    double totalTax = 0.0;
-    for (const auto& product : cart) {
-        double tax = product->getTax(region);
-        std::cout << product->getName() << " - $" << product->getPrice()
-                  << " | Tax: $" << tax << std::endl;
-        totalTax += tax;
-    }
+    textInput->setValue("ABC");
+    datePicker->setDate("09/06/2025");
+    form.preview();
+    std::cout << form.exportToString();
 
-    std::cout << "Total Tax: $" << totalTax << std::endl;
     return 0;
 }

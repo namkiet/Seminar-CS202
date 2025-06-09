@@ -1,37 +1,22 @@
-#include "Clothes.h"
-#include "Electronics.h"
-#include "Food.h"
-#include "USATaxVisitor.h"
-#include "EUTaxVisitor.h"
+#include "Form.h"
+#include "TextInput.h"
+#include "DatePicker.h"
+
 #include <iostream>
-#include <vector>
-#include <memory>
-#include <string>
 
 int main() 
 {
-    std::vector<std::unique_ptr<Product>> cart;
-    cart.emplace_back(std::make_unique<Food>("Bread", 2.50));
-    cart.emplace_back(std::make_unique<Electronics>("Phone", 500.00));
-    cart.emplace_back(std::make_unique<Clothes>("Jacket", 80.00, false));
-    cart.emplace_back(std::make_unique<Clothes>("Kids Shirt", 30.00, true));
+    auto textInput = std::make_shared<TextInput>();
+    auto datePicker = std::make_shared<DatePicker>();
 
-    USATaxVisitor usaTax;
-    EUTaxVisitor euTax;
+    Form form;
+    form.addField(textInput);
+    form.addField(datePicker);
 
-    std::cout << "=== Tax Calculation (USA) ===\n";
-    for (const auto& item : cart) 
-    {
-        double tax = item->accept(&usaTax);
-        std::cout << item->getName() << " - Tax: $" << tax << '\n';
-    }
-
-    std::cout << "\n=== Tax Calculation (EU) ===\n";
-    for (const auto& item : cart) 
-    {
-        double tax = item->accept(&euTax);
-        std::cout << item->getName() << " - Tax: $" << tax << '\n';
-    }
+    textInput->setValue("ABC");
+    datePicker->setDate("09/06/2025");
+    form.preview();
+    std::cout << form.exportToString();
 
     return 0;
 }
